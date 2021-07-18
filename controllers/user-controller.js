@@ -63,6 +63,21 @@ const userController = {
             res.status(400).json(err);
         });
     },
+    //Delete User 
+    deleteUser({params}, res) {
+        User.findOneAndDelete({_id: params.id})
+        .then((dbUserData) => {
+            if(!dbUserData) {
+                res.status(404).json({ message: 'No User found with this id!'});
+                return;
+            }
+            res.status(200).json(dbUserData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).json(err);
+        })
+    }
     //POST add a new friend to user's friend list 
     addFriend({params}, res) {
         User.findOne(
