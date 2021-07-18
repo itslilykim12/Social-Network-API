@@ -90,7 +90,7 @@ const thoughtController = {
             console.log(err);
             res.status(400).json(err);
         })
-    }
+    },
     //Add reaction
     addReaction({params, body}, res) {
         Thought.findOneAndUpdate(
